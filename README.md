@@ -91,13 +91,13 @@ My final model consisted of the following layers:
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used the folloing hyperparameter:
-Epochs: 30
-Batch size: 150
-Learning rate: 0.00097
-dropout probability: 0.7
-Finally, I use Adamoptimizer to train the model
-
+To train the model, I used the following hyperparameter:  
+Epochs: 30  
+Batch size: 150  
+Learning rate: 0.00097  
+dropout probability: 0.7  
+Finally, I use Adamoptimizer to train the model  
+  
 Initially, I use 0.01 learning rate which can give me a final validation accuracy of 0.90, then I choose 0.0001, I found it learned slower than before, but give me the final validation accuracy at 0.93, which is the passing threshold. After try and trial, and ask at slack, I decide to use 0.00097, which can reach 0.95 validation accuracy.
 
 As for epochs, I started from 10, then 20, 30 and 40. And found that 40 is overfitting since the validation accuracy started decressing from 32 epochs, and 30 epochs is enough to reach the peak of validation accuracy: 0.951.
@@ -105,9 +105,8 @@ As for epochs, I started from 10, then 20, 30 and 40. And found that 40 is overf
 The same as dropout, I tried from 0.5 to 0.9, and 0.7 gives me the best validation accuracy. 
 
 
-
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
-
+  
 My final model results were: 
 * validation set accuracy of 0.951 
 * test set accuracy of 0.933
