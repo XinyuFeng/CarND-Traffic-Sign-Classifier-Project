@@ -69,11 +69,9 @@ Here is an exploratory visualization of the data set. It first shows 43 represen
 
 ####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I fill some extra images into some classes which have fewer images than average by rotate some digree of random images in training dataset. I did this since less data in one class can lead to misclassify for the CNN of that class
+As a first step, I fill some extra images into some classes which have fewer images than average by rotate some digrees of random images in training dataset. I did this since less data in one class can lead to misclassify for the CNN of that class. Before adding those images, the final test accuracy was below 90%, and after adding, it can reach 93%. 
 
 Then I grayscale image to make them into 32x32x1 dimentions and normalize them in order to make it easier for CNN to training and these ways can increase the final accuracy.
-
-Here is an example of a traffic sign image before and after grayscaling.
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -104,9 +102,16 @@ My final model consisted of the following layers:
 To train the model, I used the folloing hyperparameter:
 Epochs: 30
 Batch size: 150
-Learning rate: 0.00097 (I found this is better than 0.0001 on validation accuracy)
+Learning rate: 0.00097
 dropout probability: 0.7
 Finally, I use Adamoptimizer to train the model
+
+Initially, I use 0.01 learning rate which can give me a final validation accuracy of 0.90, then I choose 0.0001, I found it learned slower than before, but give me the final validation accuracy at 0.93, which is the passing threshold. After try and trial, and ask at slack, I decide to use 0.00097, which can reach 0.95 validation accuracy.
+
+As for epochs, I started from 10, then 20, 30 and 40. And found that 40 is overfitting since the validation accuracy started decressing from 32 epochs, and 30 epochs is enough to reach the peak of validation accuracy: 0.951.
+
+The same as dropout, I tried from 0.5 to 0.9, and 0.7 gives me the best validation accuracy. 
+
 
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -128,7 +133,7 @@ I found out that without dropout, when validation accuracy is exceed arround 4%-
 
 * How was the architecture adjusted and why was it adjusted? 
 
-I added dropout layers after fully connected layers
+I added dropout layers after each fully connected layers, except the last one.
 
 
 * Which parameters were tuned? How were they adjusted and why?
@@ -171,7 +176,8 @@ Here are the results of the prediction:
 | Stop		| Stop    							|
 
 
-The model was able to correctly guess 9 of the 12 traffic signs, which gives an accuracy of 75%. 
+The model was able to correctly guess 9 of the 12 traffic signs, which gives an accuracy of 75%. Since my model can reach 93% test accuracy on old test set, I think my model might be a little bit overfitting.
+
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
